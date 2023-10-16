@@ -5,10 +5,17 @@ import { data } from "../data/data";
 // Return example: 'Planet Name'
 
 export function getFirstPlanetName(data) {
-  // Your code goes here...
-  const planets = data.planets;
-  //console.log(planets);
-  return planets[0].name;
+  if (!data || !Array.isArray(data.planets) || data.planets.length === 0) {
+    return 'Data is not in expected format or has no planets';
+  }
+
+  const firstPlanet = data.planets[0];
+
+  if (!firstPlanet.hasOwnProperty('name')) {
+    return 'First planet does not have a name key';
+  }
+
+  return firstPlanet.name;
 }
 
 
